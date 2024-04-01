@@ -14,8 +14,7 @@ services:
     depends_on:
       - mysql
     networks:
-      - my_network:
-          name: two-tier
+      - two-tier
 
   mysql:
     image: mysql:5.7
@@ -30,12 +29,10 @@ services:
       - ./message.sql:/docker-entrypoint-initdb.d/message.sql   # Mount sql script into container's /docker-entrypoint-initdb.d directory to get table automatically created
       - mysql-data:/var/lib/mysql  # Mount the volume for MySQL data storage
     networks:
-      - my_network:
-          name: two-tier
+      - two-tier
 
 networks:
-  my_network:
-    name: two-tier
+  two-tier:
 
 
 volumes:
